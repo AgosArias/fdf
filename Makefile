@@ -1,40 +1,51 @@
 NAME = fdf
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -Iincludes -I$(MLX_DIR)
+CFLAGS = -Wall -Wextra -Werror
+INCLUDES = -Iincludes -Isrc/gnl -Isrc/libft -Isrc/minilibx
 
 SRC_DIR = src
-MLX_DIR = $(SRC_DIR)/minilibx
 GNL_DIR = $(SRC_DIR)/gnl
+LIBFT_DIR = $(SRC_DIR)/libft
+MLX_DIR = $(SRC_DIR)/minilibx
 
-SRC = 	$(SRC_DIR)/main.c \
-		$(SRC_DIR)/parse.c \
-		$(SRC_DIR)/draw.c \
-		$(SRC_DIR)/utils.c 
+LIBFT = $(LIBFT_DIR)/libft.a
+MLX = $(MLX_DIR)/libmlx.a
+MLX_FLAGS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 
-SRC_GNL= $(GNL_DIR)/get_next_line.c \
-		$(GNL_DIR)/get_next_line_utils.c 
+SRC = \
+	$(SRC_DIR)/main.c \
+	$(SRC_DIR)/parse.c \
+	$(SRC_DIR)/draw.c \
+	$(SRC_DIR)/utils.c \
+	$(GNL_DIR)/get_next_line.c \
+	$(GNL_DIR)/get_next_line_utils.c
 
 OBJ = $(SRC:.c=.o)
 
-
-MLX_FLAGS = -L$(MLX_DIR) -lmlx -lX11 -lXext -lm
+.PHONY: all clean fclean re
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	@$(MAKE) -C $(MLX_DIR)
-	$(CC) $(CFLAGS) $(OBJ) $(MLX_FLAGS) -o $(NAME)
-	@echo "✅ Compilación completa: $(NAME)"
+$(NAME): $(OBJ) $(LIBFT) $(MLX)
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX_FLAGS) -o $(NAME)
+
+$(LIBFT):
+	$(MAKE) -C $(LIBFT_DIR)
+
+$(MLX):
+	$(MAKE) -C $(MLX_DIR)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
-	rm -rf %.o
-	@$(MAKE) clean -C $(MLX_DIR)
+	rm -f $(OBJ)
+	$(MAKE) -C $(LIBFT_DIR) clean
+	$(MAKE) -C $(MLX_DIR) clean
 
 fclean: clean
 	rm -f $(NAME)
+	$(MAKE) -C $(LIBFT_DIR) fclean
 
-re: fclean all 
+re: fclean all

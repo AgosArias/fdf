@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agossariass <agossariass@student.42.fr>    +#+  +:+       +#+        */
+/*   By: aarias-d < aarias-d@student.42malaga.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:47:42 by agossariass       #+#    #+#             */
-/*   Updated: 2025/10/06 12:02:05 by agossariass      ###   ########.fr       */
+/*   Updated: 2025/10/10 13:50:35 by aarias-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,10 @@ typedef struct s_fdf
 
 void	ft_error(char *msg);
 void	ft_free_matriz(char **matriz);
-char	**ft_create_matriz(char *str);
+int	**ft_create_matriz(char *str);
 void	ft_create_window(t_data *img);
 void	ft_free_matriz_int(int **matrix);
-int	*ft_fill_row(char *str, int size);
-void	ft_get_wight_height(int fd, int *wight, int *height);
+int	**ft_get_wight_height(int fd, int *wight, int *height);
 
 
 

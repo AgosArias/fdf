@@ -1,7 +1,7 @@
 NAME = fdf
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = 
 INCLUDES = -Iincludes -Isrc/gnl -Isrc/libft -Isrc/minilibx
 
 SRC_DIR = src

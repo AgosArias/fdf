@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agossariass <agossariass@student.42.fr>    +#+  +:+       +#+        */
+/*   By: aarias-d < aarias-d@student.42malaga.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 16:24:33 by aarias-d          #+#    #+#             */
-/*   Updated: 2025/10/05 13:15:45 by agossariass      ###   ########.fr       */
+/*   Updated: 2025/10/09 20:32:24 by aarias-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

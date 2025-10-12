@@ -6,80 +6,88 @@
 /*   By: aarias-d < aarias-d@student.42malaga.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 00:25:34 by agossariass       #+#    #+#             */
-/*   Updated: 2025/10/10 21:17:01 by aarias-d         ###   ########.fr       */
+/*   Updated: 2025/10/12 17:10:40 by aarias-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+void	ft_add_line(int ***matrix, char *line, int size_matrix, int count_words)
+{
+	int	**matrix_tmp;
+	int	i;
+	int	*row;
+
+	if (size_matrix < 1)
+		return ;
+	row = ft_line_to_array(line, count_words);
+	matrix_tmp = (int **) malloc (sizeof(int *) * (size_matrix + 1));
+	if (!matrix_tmp)
+		return ;
+	i = 0;
+	while (*matrix && i < (size_matrix) - 1)
+	{
+		matrix_tmp[i] = (*matrix)[i];
+		i++;
+	}
+	if (*matrix)
+		free(*matrix);
+	(*matrix) = NULL;
+	matrix_tmp[i] = row;
+	matrix_tmp[i + 1] = NULL;
+	(*matrix) = matrix_tmp;
+}
+
+int	*ft_line_to_array(char *line, int size)
+{
+	char	**array_line;
+	int		*array;
+	int		i;
+
+	array_line = ft_split(line, ' ');
+	array = (int *) malloc (sizeof(int) * (size));
+	if (!array)
+	{
+		ft_free_matriz(array_line);
+		return (NULL);
+	}
+	i = 0;
+	while (array_line[i])
+	{
+		array[i] = ft_atoi(array_line[i]);
+		i++;
+	}
+	ft_free_matriz(array_line);
+	return (array);
+}
+
 int	**ft_get_map(int fd, int *wight, int *height)
 {
 	char	*line;
-	char	**aray_line;
-	int		*row;
-	int		i;
 	int		**matrix;
-	int		**matrix_tmp;
 
 	line = get_next_line(fd);
 	if (!line)
-		return (NULL);
+		return (NULL);	
 	matrix = NULL;
-	*height = 1;
+	*height = 0;
 	*wight = ft_count_words(line, ' ');
+
 	while (line)
 	{
+		(*height)++;
 		if (*wight != ft_count_words(line, ' '))
 		{
-			write(2, "Diferent wight\n", 15);
+			ft_free_matriz_int(matrix);
 			ft_free(line);
-			line = NULL;
 			exit(EXIT_FAILURE);
 		}
-		aray_line = ft_split(line, ' ');
+		ft_add_line(&matrix, line, *height, *wight);
 		ft_free(line);
-		line = NULL;
-		row = (int *) malloc (sizeof(int) * (*wight));
-		if (!row)
-		{
-			ft_free_matriz_int(matrix);
-			ft_free_matriz(aray_line);
-			exit(EXIT_FAILURE);
-			return (NULL);
-		}
-		i = 0;
-		while (aray_line[i])
-		{
-			row[i] = ft_atoi(aray_line[i]);
-			i++;
-		}
-		ft_free_matriz(aray_line);
-		matrix_tmp = (int **) malloc (sizeof(int *) * (*height) + 1);
-		if (!matrix_tmp)
-		{
-			ft_free_matriz_int(matrix);
-			exit(EXIT_FAILURE);
-			return (NULL);
-		}
-		i = 0;
-		while (matrix && i < (*height) - 1)
-		{
-			matrix_tmp[i] = matrix[i];
-			i++;
-		}
-		if (matrix)
-			free(matrix);
-		matrix = NULL;
-		matrix_tmp[i] = row;
-		matrix_tmp[i + 1] = NULL;
-		matrix = matrix_tmp;
 		line = get_next_line(fd);
-		(*height)++;
 	}
-
 	return (matrix);
 }
-
 
 t_map	*ft_create_map(char *str)
 {
@@ -88,11 +96,21 @@ t_map	*ft_create_map(char *str)
 
 	if (!str)
 		return (NULL);
+	map = (t_map *) malloc (sizeof(t_map));
+	if (!map)
+		return (NULL);
 	fd = open(str, O_RDONLY);
 	if (fd == -1)
+	{
+		free(map);
 		ft_error("File Error");
+	}
 	map->z = ft_get_map(fd, &map->width, &map->height);
-	printf("width: %d\n", map->height);
+	if (!map->z)
+	{
+		free(map);
+		exit(EXIT_FAILURE);
+	}
 	close(fd);
 	return (map);
 }

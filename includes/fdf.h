@@ -6,7 +6,7 @@
 /*   By: aarias-d < aarias-d@student.42malaga.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:47:42 by agossariass       #+#    #+#             */
-/*   Updated: 2025/10/10 13:50:35 by aarias-d         ###   ########.fr       */
+/*   Updated: 2025/10/12 14:13:24 by aarias-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,32 @@
 # include <mlx.h>
 # include "libft.h"
 # include <stdlib.h>
+# include <math.h>
+
+
+# ifndef WIN_H
+#  define WIN_H 600
+# endif
+
+# ifndef WIN_W
+#  define WIN_W 800
+# endif
+
+# ifndef BACKGROUND
+#  define BACKGROUND 0x000000
+# endif
+
+# ifndef COLOUR
+#  define COLOUR 0xFFFFFF
+# endif
+
+# ifndef ANGLE
+#  define ANGLE 30.0
+# endif
+
+# ifndef M_PI
+#  define M_PI 3.14159265358979323846
+# endif
 
 typedef struct s_data
 {
@@ -28,8 +54,8 @@ typedef struct s_data
 	void	*win;
 	void	*img;
 	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
+	int		bits;
+	int		line;
 	int		endian;
 }	t_data;
 
@@ -40,18 +66,36 @@ typedef struct s_map
 	int		**z;
 }	t_map;
 
-typedef struct s_fdf
+typedef struct s_camera
 {
-	t_map		map;
-	t_data		img;
-}	t_fdf;
+	int		xoff;
+	int		yoff;
+
+}	t_camera;
+
+typedef struct s_point
+{
+	int		x;
+	int		y;
+}	t_point;
+
+
+
 
 void	ft_error(char *msg);
 void	ft_free_matriz(char **matriz);
-int	**ft_create_matriz(char *str);
+int		**ft_create_matriz(char *str);
 void	ft_create_window(t_data *img);
+void	ft_create_image(t_data *img);
+
+//parse
+t_map	*ft_create_map(char *str);
+int		**ft_get_map(int fd, int *wight, int *height);
+int		*ft_line_to_array(char *line, int size);
+void	ft_add_line(int ***matrix, char *line, int size_matrix, int count_words);
+
 void	ft_free_matriz_int(int **matrix);
-int	**ft_get_wight_height(int fd, int *wight, int *height);
+
 
 
 

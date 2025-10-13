@@ -6,7 +6,7 @@
 /*   By: aarias-d < aarias-d@student.42malaga.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 19:05:18 by agossariass       #+#    #+#             */
-/*   Updated: 2025/10/11 13:22:55 by aarias-d         ###   ########.fr       */
+/*   Updated: 2025/10/13 09:22:26 by aarias-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,3 +42,4 @@ void	ft_free_matriz(char **matrix)
 	free(matrix);
 	matrix = NULL;
 }
+

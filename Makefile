@@ -1,7 +1,7 @@
 NAME = fdf
 
 CC = cc
-CFLAGS = 
+CFLAGS = -Wall -Wextra -Werror
 INCLUDES = -Iincludes -Isrc/gnl -Isrc/libft -Isrc/minilibx
 
 SRC_DIR = src
@@ -17,6 +17,7 @@ SRC = \
 	$(SRC_DIR)/main.c \
 	$(SRC_DIR)/parse.c \
 	$(SRC_DIR)/draw.c \
+	$(SRC_DIR)/draw_utils.c \
 	$(SRC_DIR)/utils.c \
 	$(GNL_DIR)/get_next_line.c \
 	$(GNL_DIR)/get_next_line_utils.c

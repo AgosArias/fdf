@@ -6,26 +6,26 @@
 /*   By: aarias-d < aarias-d@student.42malaga.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 00:25:34 by agossariass       #+#    #+#             */
-/*   Updated: 2025/10/12 17:10:40 by aarias-d         ###   ########.fr       */
+/*   Updated: 2025/10/13 19:14:45 by aarias-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	ft_add_line(int ***matrix, char *line, int size_matrix, int count_words)
+void	ft_add_line(int ***matrix, char *line, int size, int count_words)
 {
 	int	**matrix_tmp;
 	int	i;
 	int	*row;
 
-	if (size_matrix < 1)
+	if (size < 1)
 		return ;
 	row = ft_line_to_array(line, count_words);
-	matrix_tmp = (int **) malloc (sizeof(int *) * (size_matrix + 1));
+	matrix_tmp = (int **) malloc (sizeof(int *) * (size + 1));
 	if (!matrix_tmp)
 		return ;
 	i = 0;
-	while (*matrix && i < (size_matrix) - 1)
+	while (*matrix && i < (size) - 1)
 	{
 		matrix_tmp[i] = (*matrix)[i];
 		i++;

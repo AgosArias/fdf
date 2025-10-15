@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aarias-d < aarias-d@student.42malaga.co    +#+  +:+       +#+        */
+/*   By: aarias-d <aarias-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 17:43:48 by agossariass       #+#    #+#             */
-/*   Updated: 2025/10/13 13:14:11 by aarias-d         ###   ########.fr       */
+/*   Updated: 2025/10/15 16:01:39 by aarias-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,8 @@ int	ft_close(int keycode, void *param)
 	mlx_destroy_display(img->mlx);
 	free(img->mlx);
 	img->mlx = NULL;
-	//exit(EXIT_SUCCESS);
 	return (0);
 }
-
 
 int	main(int argc, char **argv)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aarias-d < aarias-d@student.42malaga.co    +#+  +:+       +#+        */
+/*   By: aarias-d <aarias-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:47:42 by agossariass       #+#    #+#             */
-/*   Updated: 2025/10/13 19:16:15 by aarias-d         ###   ########.fr       */
+/*   Updated: 2025/10/15 16:00:15 by aarias-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # include "libft.h"
 # include <stdlib.h>
 # include <math.h>
-
 
 # ifndef WIN_H
 #  define WIN_H 600
@@ -47,7 +46,6 @@
 # ifndef ZSCALE
 #  define ZSCALE 0.5
 # endif
-
 
 # ifndef ANGLE
 #  define ANGLE 30.0
@@ -91,22 +89,18 @@ typedef struct s_point
 	int		y;
 }	t_point;
 
-void	ft_error(char *msg);
-void	ft_free_matriz(char **matriz);
-void	ft_create_window(t_data *img);
-void	ft_create_image(t_data *img, t_map map);
-//parse
-t_map	*ft_create_map(char *str);
-int		**ft_get_map(int fd, int *wight, int *height);
-int		*ft_line_to_array(char *line, int size);
-void	ft_add_line(int ***matrix, char *line, int size, int count_words);
-
+void		ft_error(char *msg);
+void		ft_free_matriz(char **matriz);
+void		ft_create_window(t_data *img);
+void		ft_create_image(t_data *img, t_map map);
+t_map		*ft_create_map(char *str);
+int			**ft_get_map(int fd, int *wight, int *height);
+int			*ft_line_to_array(char *line, int size);
+void		ft_add_line(int ***matrix, char *line, int size, int count_words);
 void		ft_free_matriz_int(int **matrix);
 t_camera	ft_get_camara(void);
 void		ft_clear_img(t_data *img);
 t_point		ft_create_point(int x, int y, int z, t_camera cam);
-
-
-void	ft_change_colour(t_data *img, int x, int y, int colour);
+void		ft_change_colour(t_data *img, int x, int y, int colour);
 
 #endif

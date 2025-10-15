@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aarias-d < aarias-d@student.42malaga.co    +#+  +:+       +#+        */
+/*   By: aarias-d <aarias-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 14:25:06 by agossariass       #+#    #+#             */
-/*   Updated: 2025/10/13 09:49:33 by aarias-d         ###   ########.fr       */
+/*   Updated: 2025/10/15 16:01:02 by aarias-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	ft_calculate_s(t_point a, t_point b, int *sx, int *sy)
 {
-
 	if (a.x < b.x)
 		*sx = 1;
 	else
@@ -40,7 +39,7 @@ void	ft_draw_line(t_data *img, t_point a, t_point b)
 	while (a.x != b.x && a.y != b.y)
 	{
 		ft_change_colour(img, a.x, a.y, COLOUR);
-		if (2 * err >= dy) 
+		if (2 * err >= dy)
 		{
 			err += dy;
 			a.x += sx;

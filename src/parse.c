@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aarias-d < aarias-d@student.42malaga.co    +#+  +:+       +#+        */
+/*   By: aarias-d <aarias-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 00:25:34 by agossariass       #+#    #+#             */
-/*   Updated: 2025/10/13 19:14:45 by aarias-d         ###   ########.fr       */
+/*   Updated: 2025/10/15 16:02:15 by aarias-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,10 @@ int	**ft_get_map(int fd, int *wight, int *height)
 
 	line = get_next_line(fd);
 	if (!line)
-		return (NULL);	
+		return (NULL);
 	matrix = NULL;
 	*height = 0;
 	*wight = ft_count_words(line, ' ');
-
 	while (line)
 	{
 		(*height)++;

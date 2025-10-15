@@ -1,44 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aarias-d <aarias-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/03 19:05:18 by agossariass       #+#    #+#             */
-/*   Updated: 2025/10/15 16:02:39 by aarias-d         ###   ########.fr       */
+/*   Created: 2025/05/05 17:51:38 by aarias-d          #+#    #+#             */
+/*   Updated: 2025/10/15 16:04:07 by aarias-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-void	ft_error(char *msg)
+char	*ft_strchr(const char *s, int c)
 {
-	perror(msg);
-	exit(EXIT_FAILURE);
-}
+	int		count;
+	char	*d;
 
-void	ft_free_matriz_int(int **matrix)
-{
-	int	i;
-
-	if (!matrix || !*matrix)
-		return ;
-	i = 0;
-	while (matrix[i])
-		free(matrix[i++]);
-	free(matrix);
-}
-
-void	ft_free_matriz(char **matrix)
-{
-	int	i;
-
-	if (!matrix || !*matrix)
-		return ;
-	i = 0;
-	while (matrix[i])
-		free(matrix[i++]);
-	free(matrix);
-	matrix = NULL;
+	d = (char *)s;
+	count = 0;
+	while (d[count])
+	{
+		if (d[count] == (char)c)
+			return (&d[count]);
+		count++;
+	}
+	if ((char)c == '\0')
+		return (&d[count]);
+	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: aarias-d < aarias-d@student.42malaga.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 17:43:48 by agossariass       #+#    #+#             */
-/*   Updated: 2025/10/21 13:39:15 by aarias-d         ###   ########.fr       */
+/*   Updated: 2025/10/22 17:18:45 by aarias-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int	ft_destroy_window(void *param)
 		img->win = NULL;
 	}
 	mlx_destroy_display(img->mlx);
+	ft_free_matriz_int(img->map.z);
 	free(img->mlx);
 	img->mlx = NULL;
 	exit(EXIT_SUCCESS);
@@ -79,17 +80,17 @@ int	main(int argc, char **argv)
 		write(2, "Bad Arguments\n", 14);
 		exit (EXIT_FAILURE);
 	}
+	img.map.z = 0;
+	ft_create_window(&img);
 	map = ft_create_map(argv[1]);
 	if (!map)
 	{
-		ft_free_matriz_int(map->z);
+		ft_destroy_window((void *)&img);
 		exit(EXIT_FAILURE);
 	}
-	ft_create_window(&img);
+	img.map = *map;
 	ft_create_image(&img, *map);
-	ft_free_matriz_int(map->z);
-	if (map)
-		free(map);
+	free(map);
 	mlx_hook(img.win, 2, 1L << 0, ft_close, &img);
 	mlx_hook(img.win, 17, 0L, ft_destroy_window, &img);
 	mlx_loop(img.mlx);

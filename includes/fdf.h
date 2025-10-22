@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aarias-d <aarias-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aarias-d < aarias-d@student.42malaga.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:47:42 by agossariass       #+#    #+#             */
-/*   Updated: 2025/10/15 16:00:15 by aarias-d         ###   ########.fr       */
+/*   Updated: 2025/10/22 16:56:40 by aarias-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,13 @@ typedef struct s_camera
 
 }	t_camera;
 
+typedef struct s_map
+{
+	int		height;
+	int		width;
+	int		**z;
+}	t_map;
+
 typedef struct s_data
 {
 	void		*mlx;
@@ -73,15 +80,9 @@ typedef struct s_data
 	int			bits;
 	int			line;
 	int			endian;
+	t_map		map;
 	t_camera	camera;
 }	t_data;
-
-typedef struct s_map
-{
-	int		height;
-	int		width;
-	int		**z;
-}	t_map;
 
 typedef struct s_point
 {

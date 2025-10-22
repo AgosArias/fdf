@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aarias-d <aarias-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aarias-d < aarias-d@student.42malaga.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 14:25:06 by agossariass       #+#    #+#             */
-/*   Updated: 2025/10/15 16:01:02 by aarias-d         ###   ########.fr       */
+/*   Updated: 2025/10/22 17:45:34 by aarias-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,41 +16,46 @@ void	ft_calculate_s(t_point a, t_point b, int *sx, int *sy)
 {
 	if (a.x < b.x)
 		*sx = 1;
+	else if (a.x == b.x) 
+		*sx = 0;
 	else
 		*sx = -1;
 	if (a.y < b.y)
 		*sy = 1;
+	else if (a.y == b.y) 
+		*sy = 0;
 	else
 		*sy = -1;
 }
 
 void	ft_draw_line(t_data *img, t_point a, t_point b)
 {
-	int	dx;
-	int	sx;
-	int	dy;
-	int	sy;
-	int	err;
+	t_point	dif;
+	t_point	s;
+	int		err;
+	int		er2;
 
-	dx = abs(b.x - a.x);
-	dy = -abs(b.y - a.y);
-	ft_calculate_s(a, b, &sx, &sy);
-	err = dx + dy;
-	while (a.x != b.x && a.y != b.y)
+	dif.x = abs(b.x - a.x);
+	dif.y = -abs(b.y - a.y);
+	ft_calculate_s(a, b, &s.x, &s.y);
+	err = dif.x + dif.y;
+	while (1)
 	{
+		er2 = 2 * err;
 		ft_change_colour(img, a.x, a.y, COLOUR);
-		if (2 * err >= dy)
+		if (a.x == b.x && a.y == b.y)
+			break ;
+		if (er2 >= dif.y)
 		{
-			err += dy;
-			a.x += sx;
+			err += dif.y;
+			a.x += s.x;
 		}
-		if (2 * err <= dx)
+		if (er2 <= dif.x)
 		{
-			err += dx;
-			a.y += sy;
+			err += dif.x;
+			a.y += s.y;
 		}
 	}
-	ft_change_colour(img, a.x, a.y, COLOUR);
 }
 
 void	ft_get_dots_and_draw(int x, int y, t_map map, t_data *img)

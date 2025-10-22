@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aarias-d <aarias-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aarias-d < aarias-d@student.42malaga.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 17:43:48 by agossariass       #+#    #+#             */
-/*   Updated: 2025/10/15 16:01:39 by aarias-d         ###   ########.fr       */
+/*   Updated: 2025/10/21 13:39:15 by aarias-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,11 @@ void	ft_create_window(t_data *img)
 	ft_clear_img(img);
 }
 
-int	ft_close(int keycode, void *param)
+int	ft_destroy_window(void *param)
 {
 	t_data	*img;
 
 	img = (t_data *)param;
-	if (keycode != 65307 && keycode != 120)
-		return (0);
 	if (!img || !img->mlx)
 		exit(EXIT_SUCCESS);
 	if (img->img)
@@ -60,7 +58,15 @@ int	ft_close(int keycode, void *param)
 	mlx_destroy_display(img->mlx);
 	free(img->mlx);
 	img->mlx = NULL;
-	return (0);
+	exit(EXIT_SUCCESS);
+}
+
+int	ft_close(int keycode, void *param)
+{
+	if (keycode != 65307 && keycode != 120)
+		return (0);
+	ft_destroy_window(param);
+	exit(EXIT_SUCCESS);
 }
 
 int	main(int argc, char **argv)
@@ -82,10 +88,10 @@ int	main(int argc, char **argv)
 	ft_create_window(&img);
 	ft_create_image(&img, *map);
 	ft_free_matriz_int(map->z);
-	mlx_hook(img.win, 2, 1L << 0, ft_close, NULL);
-	mlx_hook(img.win, 17, 0L, ft_close, NULL);
-	mlx_loop(img.mlx);
 	if (map)
 		free(map);
+	mlx_hook(img.win, 2, 1L << 0, ft_close, &img);
+	mlx_hook(img.win, 17, 0L, ft_destroy_window, &img);
+	mlx_loop(img.mlx);
 	return (0);
 }

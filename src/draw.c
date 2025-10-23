@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aarias-d < aarias-d@student.42malaga.co    +#+  +:+       +#+        */
+/*   By: aarias-d <aarias-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 14:25:06 by agossariass       #+#    #+#             */
-/*   Updated: 2025/10/23 10:37:46 by aarias-d         ###   ########.fr       */
+/*   Updated: 2025/10/23 15:30:25 by aarias-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ void	ft_calculate_s(t_point a, t_point b, int *sx, int *sy)
 {
 	if (a.x < b.x)
 		*sx = 1;
-	else if (a.x == b.x) 
+	else if (a.x == b.x)
 		*sx = 0;
 	else
 		*sx = -1;
 	if (a.y < b.y)
 		*sy = 1;
-	else if (a.y == b.y) 
+	else if (a.y == b.y)
 		*sy = 0;
 	else
 		*sy = -1;

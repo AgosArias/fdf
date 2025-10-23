@@ -6,7 +6,7 @@
 /*   By: aarias-d < aarias-d@student.42malaga.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 14:25:06 by agossariass       #+#    #+#             */
-/*   Updated: 2025/10/22 17:45:34 by aarias-d         ###   ########.fr       */
+/*   Updated: 2025/10/23 10:37:46 by aarias-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,13 @@ void	ft_calculate_s(t_point a, t_point b, int *sx, int *sy)
 		*sy = -1;
 }
 
+void	ft_calculate_difs(t_point *dif, int *err, t_point a, t_point b)
+{
+	dif->x = abs(b.x - a.x);
+	dif->y = -abs(b.y - a.y);
+	*err = dif->x + dif->y;
+}
+
 void	ft_draw_line(t_data *img, t_point a, t_point b)
 {
 	t_point	dif;
@@ -35,10 +42,8 @@ void	ft_draw_line(t_data *img, t_point a, t_point b)
 	int		err;
 	int		er2;
 
-	dif.x = abs(b.x - a.x);
-	dif.y = -abs(b.y - a.y);
+	ft_calculate_difs(&dif, &err, a, b);
 	ft_calculate_s(a, b, &s.x, &s.y);
-	err = dif.x + dif.y;
 	while (1)
 	{
 		er2 = 2 * err;

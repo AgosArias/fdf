@@ -6,7 +6,7 @@
 /*   By: aarias-d < aarias-d@student.42malaga.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 16:24:39 by aarias-d          #+#    #+#             */
-/*   Updated: 2025/10/24 09:17:46 by aarias-d         ###   ########.fr       */
+/*   Updated: 2025/10/24 09:26:59 by aarias-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,11 @@ char	*get_next_line(int fd)
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
+	{
+		ft_free(buffer);
+		buffer = NULL;
 		return (NULL);
+	}
 	buffer = ft_read(fd, buffer);
 	if (!buffer || buffer[0] == '\0' || *buffer == '\0')
 	{

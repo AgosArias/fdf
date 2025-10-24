@@ -6,7 +6,7 @@
 /*   By: aarias-d < aarias-d@student.42malaga.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 00:25:34 by agossariass       #+#    #+#             */
-/*   Updated: 2025/10/24 09:17:46 by aarias-d         ###   ########.fr       */
+/*   Updated: 2025/10/24 09:24:16 by aarias-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,14 @@ int	**ft_get_map(int fd, int *wight, int *height)
 		{
 			ft_free_matriz_int(matrix);
 			ft_free(line);
+			get_next_line(-1);
 			return (NULL);
 		}
 		ft_add_line(&matrix, line, *height, *wight);
 		ft_free(line);
 		line = get_next_line(fd);
 	}
+	get_next_line(-1);
 	return (matrix);
 }
 

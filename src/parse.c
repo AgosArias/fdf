@@ -6,7 +6,7 @@
 /*   By: aarias-d < aarias-d@student.42malaga.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 00:25:34 by agossariass       #+#    #+#             */
-/*   Updated: 2025/10/24 09:24:16 by aarias-d         ###   ########.fr       */
+/*   Updated: 2025/10/24 10:04:33 by aarias-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ t_map	*ft_create_map(char *str)
 	if (fd == -1)
 	{
 		free(map);
-		ft_error("File Error");
+		perror("File Error");
 		return (NULL);
 	}
 	map->z = ft_get_map(fd, &map->width, &map->height);
